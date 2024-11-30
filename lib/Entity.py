@@ -10,6 +10,7 @@ class Entity:
     relations: list[str]
     associated_entity_names: list[tuple[str, float]]
     weight: float
+    chain_lengths: list[int]
 
     def __init__(self, *, name: str, type: str = '', weight: float = 0.0):
         self.name = name.lower()
@@ -19,6 +20,7 @@ class Entity:
         self.weight = weight
         self.relations = []
         self.associated_entity_names = []
+        self.chain_lengths = []
 
     @staticmethod
     def get_name_synonyms(name: str) -> list[str]:
@@ -46,10 +48,15 @@ class Entity:
         self.add_associated_entity(associated_entity_name)
         self.add_synonym(synonym)
 
+    def __ne__(self, other):
+        if self.name != other.name:
+            return
+
     def __str__(self):
         return (f"Name: {self.name}\n"
                 f"Type: {self.type}\n"
                 f"List of tuple indexes: {self.sentence_word_indexes}\n"
                 f"Weight: {self.weight}\n"
                 f"Relations: {self.relations}\n"
-                f"Associated_entity_names: {self.associated_entity_names}\n")
+                f"Associated_entity_names: {self.associated_entity_names}\n"
+                f"Chain lengths: {self.chain_lengths}\n")
