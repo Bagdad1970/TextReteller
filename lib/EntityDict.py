@@ -8,14 +8,22 @@ class EntityDict:
         if new_entity.name not in self.entities:
             self.entities[new_entity.name] = new_entity
         else:
-            self.entities[new_entity.name].sentence_word_indexes.append(new_entity.sentence_word_indexes[-1])
+            sentence_word_index = new_entity.sentence_word_indexes[-1]
+            relation = new_entity.relations[-1]
+            #associated_entity_name = new_entity.associated_entity_names[-1]
+            #synonym = new_entity.synonyms[-1]
+            self.entities[new_entity.name].add_features(sentence_word_index=sentence_word_index, relation=relation)
 
     def __getattr__(self, name):
-        # Динамическое получение сущности
         if name in self.entities:
             return self.entities[name]
 
-        raise AttributeError(f"No entity found with name '{name}'")  # можно возвращать ошибку
+        raise AttributeError(f"No entity found with name '{name}'")
+
+    def __getitem__(self, name):
+        if name in self.entities:
+            return self.entities[name]
+        raise KeyError(f"No entity found with name '{name}'")
 
     def __iter__(self):
         return iter(self.entities.values())
