@@ -8,11 +8,10 @@ class EntityDict:
         if new_entity.name not in self.entities:
             self.entities[new_entity.name] = new_entity
         else:
-            sentence_word_index = new_entity.sentence_word_indexes[-1]
+            self.entities[new_entity.name].add_indexes(new_entity.sentence_word_indexes)
             relation = new_entity.relations[-1]
-            #associated_entity_name = new_entity.associated_entity_names[-1]
             #synonym = new_entity.synonyms[-1]
-            self.entities[new_entity.name].add_features(sentence_word_index=sentence_word_index, relation=relation)
+            self.entities[new_entity.name].add_relation(relation)
 
     def __getattr__(self, name):
         if name in self.entities:

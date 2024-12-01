@@ -1,10 +1,10 @@
 from lib.EntityDict import EntityDict
 from lib.TextSplitter import TextSplitter
-from lib.config_reader import load_config
+from lib.Config import Config
 
 class ImportanceCounter:
     def __init__(self, text, entity_dict: EntityDict):
-        self.metrics = load_config('entity_metrics.json')
+        self.metrics = Config.load_config('entity_metrics.json')
         self.entity_dict = entity_dict
         self.tokenized_text = TextSplitter(text).split_text_on_words()
 

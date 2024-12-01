@@ -1,35 +1,33 @@
 from lib.Entity import Entity
 from EntityDict import EntityDict
-from natasha import (
-    Doc,
-    Segmenter,
-    NewsEmbedding,
-    NewsSyntaxParser
-)
+from pymorphy3 import MorphAnalyzer
+from lib.TextParser import TextParser
 
-segmenter = Segmenter()
-embedding = NewsEmbedding()
-syntax_parser = NewsSyntaxParser(embedding)
+morph = MorphAnalyzer()
 
 class SimpleEntityFinder:
     def __init__(self, text):
-        self.text = text
+        self.parsed_text = TextParser.get_processed_text(text)
 
     def find_entities(self) -> EntityDict:
-        if self.text == "":
+        if self.parsed_text == "":
             return EntityDict()
 
-        doc = Doc(self.text)
-        doc.segment(segmenter)  # найти, что можно оптимизировать
-        doc.parse_syntax(syntax_parser)
-
         entity_dict = EntityDict()
-        for sentence_index, sentence in enumerate(doc.sents):
+
+        # найдем root (сказуемое)
+        # то слово типа nsubj, obj, ... которое с ним связано через head_id явл. подлежащим
+        # после этого также проверяется к какой части речи принадлежит слово
+        for sent_index, sentence in enumerate(self.parsed_text.sents):
+            self.parsed_text.sents[sent_index].syntax.print()
             for word_index, word in enumerate(sentence.tokens):
-                if word.rel == 'nsubj':
+                #print(word.text, word.pos)
+                if word.pos == 'NOUN' or word.pos == 'PROPN':
                     # продолжаем читать слова, пока не закончится flat::... т.к. может быть именованой сущностью
-                    entity = Entity(name=word.text)
-                    entity.add_index(sentence_index=sentence_index, word_index=word_index)
+                    entity = Entity(name=morph.parse(word.text)[0].normal_form)
+                    entity.add_index(sent_index, word_index)
+                    entity.add_relation(word.rel)
+
                     entity_dict.add_entity(entity)
 
         return entity_dict
