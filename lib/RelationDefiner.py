@@ -1,8 +1,8 @@
 from natasha.doc import DocToken
 from lib.EntityDict import EntityDict
+from lib.EntityVertex import EntityVertex
 from lib.TextParser import TextParser
 from pymorphy3 import MorphAnalyzer
-#from EntityVertex import EntityVertex
 
 class RelationDefiner:
     morph = MorphAnalyzer()
@@ -70,8 +70,7 @@ class RelationDefiner:
                 dependency_groups.append((self.to_normal_form(the_most_important_token), 'root'))
 
             for indexes in zip(sorted_by_rels_indexes, sorted_by_rels_indexes[1:]):
-                dependency = self.parsed_text.sents[sent_index].tokens[indexes[0]]
-                dependent = self.parsed_text.sents[sent_index].tokens[indexes[1]]
+                dependency, dependent  = self.parsed_text.sents[sent_index].tokens[indexes[0]], self.parsed_text.sents[sent_index].tokens[indexes[1]]
                 dependency_groups.append((self.to_normal_form(dependency), self.to_normal_form(dependent)))
 
         return dependency_groups
@@ -120,6 +119,16 @@ class RelationDefiner:
 
         return dependency_groups
 
+    def transform_to_entity_vertexes(self, couple_entities: tuple[str, str]) -> tuple:
+        dependency, dependent = couple_entities
+        dependency_entity_vertex = dependent_entity_vertex = None
+        if dependent == 'root':
+            dependency_entity_vertex = EntityVertex(entity=self.entity_dict[dependency], is_nsubj=True)
+        else:
+            dependency_entity_vertex, dependent_entity_vertex = (EntityVertex(entity=self.entity_dict[dependency]),
+                                                                 EntityVertex(entity=self.entity_dict[dependent]))
+        return dependency_entity_vertex, dependent_entity_vertex
+
     def relations_between_entities(self) -> list:
         total_dependents = []
         for sent_index, sentence in enumerate(self.parsed_text.sents):
@@ -128,13 +137,15 @@ class RelationDefiner:
             dependent_from_verbs = self.entities_dependent_from_verbs_in_sentence(sent_index, tokens)
             dependent_from_nouns = self.entities_dependent_from_nouns_in_sentence(tokens)
 
-            for entity_dependence in dependent_from_verbs + dependent_from_nouns:
-                total_dependents.append(entity_dependence)
+            for couple_entities in dependent_from_verbs + dependent_from_nouns:
+                couple_entity_vertexes = self.transform_to_entity_vertexes(couple_entities)
+                total_dependents.append(couple_entity_vertexes)
 
         return total_dependents
 
-    def define_relations(self):
+    def relations(self):
         # будем хранить по индексу массива список всех имен сущностей, которые там встречаются
         # по relation определим какую роль они играют в предложении
         # в соответствии с этим выделим слабосвязанные и сильносвязанные сущности
         return self.relations_between_entities()
+
