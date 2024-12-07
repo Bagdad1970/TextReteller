@@ -1,12 +1,13 @@
 from ImportanceCounter import ImportanceCounter
 from RelationDefiner import RelationDefiner
 from EntityDict import EntityDict
+from lib.SentenceDict import SentenceDict
 
-class SemanticFinder:
-    def __init__(self, text: str, entities: EntityDict):
+class SemanticAnalyzer:
+    def __init__(self, text: str, entities: EntityDict, sentence_dict: SentenceDict):
         self.entities = entities
         self.importance_finder = ImportanceCounter(text, entities)
-        self.relation_definer = RelationDefiner(text, entities)
+        self.relation_definer = RelationDefiner(text=text, entity_dict=self.entities, sentence_dict=sentence_dict)
 
     def importance_of_entities(self):
         self.importance_finder.find_weights()
