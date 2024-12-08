@@ -7,10 +7,9 @@ class EntityVertex:
     weight: float
     is_nsubj: bool
 
-    def __init__(self, *, entity: Entity, is_nsubj: bool = False):
+    def __init__(self, *, entity: Entity):
         self.name = entity.name
         self.weight = entity.weight
-        self.is_nsubj = is_nsubj
 
     def __hash__(self):
         return hash((self.name, self.weight))
@@ -21,4 +20,4 @@ class EntityVertex:
     def __str__(self):
         return (f"Name: {self.name} "
                 f"Weight: {self.weight} "
-                f"Is_nsubj: {self.is_nsubj} ")
+                )

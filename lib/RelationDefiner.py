@@ -65,10 +65,6 @@ class RelationDefiner:
         for verb, nouns in verbs_in_sentence.items():
             sorted_by_rels_indexes = self.sort_entity_importance_by_relation(nouns)
 
-            the_most_important_token = self.parsed_text.sents[sent_index].tokens[sorted_by_rels_indexes[0]]
-            if the_most_important_token.rel == 'nsubj':
-                dependency_groups.append((self.to_normal_form(the_most_important_token), 'root'))
-
             for indexes in zip(sorted_by_rels_indexes, sorted_by_rels_indexes[1:]):
                 dependency, dependent  = self.parsed_text.sents[sent_index].tokens[indexes[0]], self.parsed_text.sents[sent_index].tokens[indexes[1]]
                 dependency_groups.append((self.to_normal_form(dependency), self.to_normal_form(dependent)))
@@ -121,11 +117,7 @@ class RelationDefiner:
 
     def transform_to_entity_vertexes(self, couple_entities: tuple[str, str]) -> tuple:
         dependency, dependent = couple_entities
-        dependency_entity_vertex = dependent_entity_vertex = None
-        if dependent == 'root':
-            dependency_entity_vertex = EntityVertex(entity=self.entity_dict[dependency], is_nsubj=True)
-        else:
-            dependency_entity_vertex, dependent_entity_vertex = (EntityVertex(entity=self.entity_dict[dependency]),
+        dependency_entity_vertex, dependent_entity_vertex = (EntityVertex(entity=self.entity_dict[dependency]),
                                                                  EntityVertex(entity=self.entity_dict[dependent]))
         return dependency_entity_vertex, dependent_entity_vertex
 
