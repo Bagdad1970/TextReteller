@@ -5,11 +5,15 @@ from Entity import Entity
 class EntityVertex:
     name: str
     weight: float
-    is_nsubj: bool
+    weight_graph: float
 
-    def __init__(self, *, entity: Entity):
+    def __init__(self, entity: Entity):
         self.name = entity.name
         self.weight = entity.weight
+        self.weight_graph = 0.0
+
+    def set_weight_graph(self, weight_graph):
+        self.weight_graph = weight_graph
 
     def __hash__(self):
         return hash((self.name, self.weight))
@@ -20,4 +24,5 @@ class EntityVertex:
     def __str__(self):
         return (f"Name: {self.name} "
                 f"Weight: {self.weight} "
+                f"Weight_Graph: {self.weight_graph}"
                 )
