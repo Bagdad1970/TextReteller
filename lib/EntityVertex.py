@@ -4,25 +4,22 @@ from Entity import Entity
 @dataclass
 class EntityVertex:
     name: str
-    weight: float
+    weight_entity: float
     weight_graph: float
 
     def __init__(self, entity: Entity):
         self.name = entity.name
-        self.weight = entity.weight
-        self.weight_graph = 0.0
-
-    def set_weight_graph(self, weight_graph):
-        self.weight_graph = weight_graph
+        self.weight_entity = entity.weight_entity
+        self.weight_graph = 1.0
 
     def __hash__(self):
-        return hash((self.name, self.weight))
+        return hash(self.name)
 
     def __eq__(self, other):
-        return self.name == other.name and self.weight == other.weight
+        return self.name == other.name
 
     def __str__(self):
         return (f"Name: {self.name} "
-                f"Weight: {self.weight} "
+                f"Weight: {self.weight_entity} "
                 f"Weight_Graph: {self.weight_graph}"
                 )
