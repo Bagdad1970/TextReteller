@@ -1,28 +1,31 @@
-from dataclasses import dataclass
+from pymorphy3 import MorphAnalyzer
+from lib.EntityMain import EntityMain
 
-@dataclass
 class Entity:
-    """Class for keeping data of entity"""
-    name: str
-    synonyms: list[str]
-    type: str
-    sentence_word_indexes: dict[int, list]
-    relations: list[str]
-    weight: float
-    chain_lengths: dict[int, list]
+    morph = MorphAnalyzer()
 
-    def __init__(self, *, name: str, type: str = '', weight: float = 0.0):
-        self.name = name.lower()
-        self.synonyms = []
-        self.type = type
+    @classmethod
+    def to_normal_form(cls, name):
+        return cls.morph.parse(name)[0].normal_form
+
+    def __init__(self, name: str):
+        self.name = self.to_normal_form(name)
+        self.total_weight = 1.0
+        self.coherence = 1.0
+        self.importance = 1.0
         self.sentence_word_indexes = dict()
-        self.weight = weight
         self.relations = []
-        self.chain_lengths = dict()
 
-    @staticmethod
-    def get_name_synonyms(name: str) -> list[str]:
-        return []
+    def calculate_total_weight(self):
+        self.total_weight = self.importance * self.coherence
+
+    def separate_entity_main(self):
+        return EntityMain(self)
+
+    def attach_entity_main(self, entity_main: EntityMain):
+        self.importance = entity_main.importance
+        self.coherence = entity_main.coherence
+        self.calculate_total_weight()
 
     def add_index(self, sent_index: int, word_index: int):
         if sent_index not in self.sentence_word_indexes:
@@ -42,25 +45,25 @@ class Entity:
         if relation is not None and relation != '':
             self.relations.append(relation)
 
-    def add_synonym(self, synonym: str):
-        if synonym != '' and synonym is not None:
-            self.synonyms.append(synonym)
+    def add_relations(self, relations: list[str]):
+        if relations:
+            for relation in relations:
+                self.relations.append(relation)
 
-    def add_features(self, *, sentence_word_indexes: dict[int, list] = None, relation: str = None, synonym: str = None):
+    def add_features(self, *, sentence_word_indexes: dict[int, list] = None, relation: str = None):
         self.add_indexes(sentence_word_indexes)
         self.add_relation(relation)
-        self.add_synonym(synonym)
 
-    def __ne__(self, other):
-        return self.name != other.name
+    def __hash__(self):
+        return hash((self.name, self.importance, self.total_weight, self.coherence, self.sentence_word_indexes, self.relations))
 
     def __eq__(self, other):
         return self.name == other.name
 
     def __str__(self):
         return (f"Name: {self.name}\n"
-                f"Type: {self.type}\n"
                 f"List of tuple indexes: {self.sentence_word_indexes}\n"
-                f"Weight: {self.weight}\n"
-                f"Relations: {self.relations}\n"
-                f"Chain lengths: {self.chain_lengths}\n")
+                f"Total Weight: {self.total_weight}\n"
+                f"Entity Weight: {self.importance}\n"
+                f"Coherence: {self.coherence}\n"
+                f"Relations: {self.relations}\n")

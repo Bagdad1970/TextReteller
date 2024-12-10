@@ -1,11 +1,10 @@
 import networkx
-from EntityVertex import EntityVertex
+from EntityMain import EntityMain
 from collections import deque
 
 class RelationGraph:
-    Graph = networkx.Graph()
-
-    def __init__(self, couples_of_vertex: list[EntityVertex, EntityVertex]):
+    def __init__(self, couples_of_vertex: list[EntityMain, EntityMain]):
+        self.Graph = networkx.Graph()
         self.create_graph(couples_of_vertex)
 
     def create_graph(self, couples_of_vertex):
@@ -23,8 +22,8 @@ class RelationGraph:
         max_weight = max_degree = -1
 
         for vertex in component:
-            if vertex.weight_entity > max_weight and self.Graph.degree[vertex] >= max_degree:
-                max_weight = vertex.weight_entity
+            if vertex.importance > max_weight and self.Graph.degree[vertex] >= max_degree:
+                max_weight = vertex.importance
                 max_degree = self.Graph.degree[vertex]
                 max_vertex = vertex
 
@@ -68,7 +67,7 @@ class RelationGraph:
                 if current_vertex in visited:
                     continue
 
-                current_vertex.weight_graph = 1 - depth / (max_depth + 1)
+                current_vertex.coherence = 1 - depth / (max_depth + 1)
                 visited.add(current_vertex)
 
                 for neighbor in self.Graph.neighbors(current_vertex):

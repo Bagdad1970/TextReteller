@@ -1,6 +1,6 @@
 from natasha.doc import DocToken
 from lib.EntityDict import EntityDict
-from lib.EntityVertex import EntityVertex
+from lib.EntityMain import EntityMain
 from lib.TextParser import TextParser
 from pymorphy3 import MorphAnalyzer
 
@@ -82,7 +82,7 @@ class RelationDefiner:
 
         if depth > 3:
             return None
-        elif 1 <= depth <= 3:
+        elif 0 < depth <= 3:
             if token.pos == 'VERB':
                 return None
             elif token.pos == 'NOUN':
@@ -115,11 +115,12 @@ class RelationDefiner:
 
         return dependency_groups
 
-    def transform_to_entity_vertexes(self, couple_entities: tuple[str, str]) -> tuple:
-        dependency, dependent = couple_entities
-        dependency_entity_vertex, dependent_entity_vertex = (EntityVertex(entity=self.entity_dict[dependency]),
-                                                                 EntityVertex(entity=self.entity_dict[dependent]))
-        return dependency_entity_vertex, dependent_entity_vertex
+    def transform_to_entity_vertexes(self, couple_entity_names: tuple[str, str]) -> tuple:
+        dependency, dependent = couple_entity_names
+        dependency_entity_main, dependent_entity_main = (self.entity_dict[dependency].separate_entity_main(),
+                                                             self.entity_dict[dependent].separate_entity_main())
+
+        return dependency_entity_main, dependent_entity_main
 
     def relations_between_entities(self) -> list:
         total_dependents = []
