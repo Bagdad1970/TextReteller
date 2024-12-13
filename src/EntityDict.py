@@ -5,6 +5,13 @@ class EntityDict:
     def __init__(self):
         self.entities = dict()
 
+    @classmethod
+    def create_from_list(cls, entities):
+        entity_dict = cls()  # Создаем экземпляр текущего класса
+        for entity in entities:
+            entity_dict.add_entity(entity)
+        return entity_dict
+
     def add_entity(self, new_entity: Entity):
         """
         Adds entity to the entities
@@ -19,6 +26,9 @@ class EntityDict:
     def attach_entity_mains(self, entity_mains: list[EntityMain]):
         for entity_main in entity_mains:
             self.entities[entity_main.name].attach_entity_main(entity_main)
+
+    def is_entity_name(self, name: str) -> bool:
+        return name in self.entities
 
     def __getattr__(self, name):
         if name in self.entities:
@@ -35,10 +45,6 @@ class EntityDict:
 
     def __len__(self):
         return len(self.entities)
-
-    def __add__(self, other):  # объединение двух словарей
-        # проверка наличия одинаковых Entity и объединение их
-        pass
 
     def __str__(self):
         return "\n\n".join(str(entity) for entity in self.entities.values())

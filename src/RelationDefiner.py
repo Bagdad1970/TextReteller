@@ -1,35 +1,26 @@
 from natasha.doc import DocToken
-from lib.EntityDict import EntityDict
-from lib.EntityMain import EntityMain
-from lib.TextParser import TextParser
-from pymorphy3 import MorphAnalyzer
+from src.EntityDict import EntityDict
+from src.NameNormalizer import NameNormalizer
+from src.TokenID import TokenID
+from src.RelationGraph import RelationGraph
 
-class RelationDefiner:
-    morph = MorphAnalyzer()
+class RelationDefiner(TokenID, NameNormalizer):
     relations_importance = {"nsubj": 6, "obj": 5, "iobj": 4, "obl": 3,
                             "nmod": 2, "amod": 1, "nsubj:pass": 6
                             }
 
-    def __init__(self, *, text: str, entity_dict: EntityDict):
+    def __init__(self, parsed_text, entity_dict: EntityDict):
+        self.parsed_text = parsed_text
         self.entity_dict = entity_dict
-        self.parsed_text = TextParser.get_parsed_text(text)
-
-    @classmethod
-    def to_normal_form(cls, doc_token: DocToken):
-        return cls.morph.parse(doc_token.text)[0].normal_form
-
-    @staticmethod
-    def id_to_index(id: str) -> int:
-        return int(id.split('_')[1]) - 1
 
     @classmethod
     def sort_entity_importance_by_relation(cls, tokens: list[DocToken]) -> list:
         """
-        Сортирует токены по важности rels в предложении, у которых head_id явл. одинаковый глагол
+        Сортирует токены по важности rels в предложении, у которых head_id явл. одинаковым глаголом
         :param tokens: Токены одинакового глагола
         :return: Список индексов отсортированных по rels
         """
-        token_rels = [(cls.id_to_index(token.id), cls.relations_importance[token.rel]) for token in tokens]
+        token_rels = [(cls.id_to_word_index(token.id), cls.relations_importance[token.rel]) for token in tokens]
         return [token[0] for token in sorted(token_rels, key=lambda x: x[1], reverse=True)]
 
     @classmethod
@@ -39,7 +30,7 @@ class RelationDefiner:
         for token in tokens:
             if token.pos == 'NOUN':  # добавить PROPN (?)
                 try:
-                    dependency_index = cls.id_to_index(token.head_id)
+                    dependency_index = cls.id_to_word_index(token.head_id)
                     dependency = tokens[dependency_index]
                     if dependency.pos == 'VERB':
                         verb_text = dependency.text
@@ -66,12 +57,13 @@ class RelationDefiner:
             sorted_by_rels_indexes = self.sort_entity_importance_by_relation(nouns)
 
             for indexes in zip(sorted_by_rels_indexes, sorted_by_rels_indexes[1:]):
-                dependency, dependent  = self.parsed_text.sents[sent_index].tokens[indexes[0]], self.parsed_text.sents[sent_index].tokens[indexes[1]]
-                dependency_groups.append((self.to_normal_form(dependency), self.to_normal_form(dependent)))
+                dependency, dependent = self.parsed_text.sents[sent_index].tokens[indexes[0]], self.parsed_text.sents[sent_index].tokens[indexes[1]]
+
+                dependency_groups.append((self.name_to_normal_form(dependency.text), self.name_to_normal_form(dependent.text)))
 
         return dependency_groups
 
-    def recursive_iter(self, token: DocToken, depth, visited=None):
+    def recursive_iter(self, token: DocToken, depth: int, visited=None):
         if visited is None:
             visited = set()
 
@@ -122,7 +114,10 @@ class RelationDefiner:
 
         return dependency_entity_main, dependent_entity_main
 
-    def relations_between_entities(self) -> list:
+    def relations_of_entities(self) -> list:
+        # будем хранить по индексу массива список всех имен сущностей, которые там встречаются
+        # по relation определим какую роль они играют в предложении
+        # в соответствии с этим выделим слабосвязанные и сильносвязанные сущности
         total_dependents = []
         for sent_index, sentence in enumerate(self.parsed_text.sents):
             tokens = sentence.tokens
@@ -135,10 +130,4 @@ class RelationDefiner:
                 total_dependents.append(couple_entity_vertexes)
 
         return total_dependents
-
-    def relations(self):
-        # будем хранить по индексу массива список всех имен сущностей, которые там встречаются
-        # по relation определим какую роль они играют в предложении
-        # в соответствии с этим выделим слабосвязанные и сильносвязанные сущности
-        return self.relations_between_entities()
 
