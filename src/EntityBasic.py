@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 @dataclass
-class EntityMain:
+class EntityBasic:
     name: str
     importance: float
     coherence: float
