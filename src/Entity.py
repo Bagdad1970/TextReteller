@@ -1,15 +1,9 @@
-from pymorphy3 import MorphAnalyzer
-from lib.EntityMain import EntityMain
+from src.EntityMain import EntityMain
+from src.NameNormalizer import NameNormalizer
 
-class Entity:
-    morph = MorphAnalyzer()
-
-    @classmethod
-    def to_normal_form(cls, name):
-        return cls.morph.parse(name)[0].normal_form
-
+class Entity(NameNormalizer):
     def __init__(self, name: str):
-        self.name = self.to_normal_form(name)
+        self.name = self.name_to_normal_form(name)
         self.total_weight = 1.0
         self.coherence = 1.0
         self.importance = 1.0

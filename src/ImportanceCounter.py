@@ -6,10 +6,9 @@ from src.Entity import Entity
 class ImportanceCounter(Config):
     metrics = Config.load_config('entity_metrics.json')
 
-    def __init__(self, parsed_text, entity_dict: EntityDict, importance_priority: int=1):
+    def __init__(self, parsed_text, entity_dict: EntityDict):
         self.parsed_text = parsed_text
         self.entity_dict = entity_dict
-        self.importance_priority = importance_priority
 
     def importance_for_entity(self, entity: Entity) -> float:
         relation_sum = 0
@@ -20,7 +19,7 @@ class ImportanceCounter(Config):
             pass
 
         amount_sents_in_text = len(self.parsed_text.sents)
-        return relation_sum / amount_sents_in_text * self.importance_priority
+        return relation_sum / amount_sents_in_text
 
     def count_importances(self) -> None:
         for entity in self.entity_dict:

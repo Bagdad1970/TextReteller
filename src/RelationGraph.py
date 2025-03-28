@@ -1,5 +1,5 @@
+from src.EntityMain import EntityMain
 import networkx
-from EntityMain import EntityMain
 from collections import deque
 
 class RelationGraph:
@@ -7,17 +7,14 @@ class RelationGraph:
         self.Graph = networkx.Graph()
         self.create_graph(couples_of_vertex)
 
-    def create_graph(self, couples_of_vertex):
+    def create_graph(self, couples_of_vertex: list[EntityMain, EntityMain]):
         for couple_vertex in couples_of_vertex:
             vertex_dependency, vertex_dependent = couple_vertex
             self.Graph.add_node(vertex_dependency)
             self.Graph.add_node(vertex_dependent)
             self.Graph.add_edge(vertex_dependency, vertex_dependent)
 
-    def max_edges_of_vertex(self):
-        return max(self.Graph.degree, key=lambda x: x[1])[1]
-
-    def max_vertex_in_component(self, component):
+    def max_vertex_in_component(self, component) -> EntityMain:
         max_vertex = None
         max_weight = max_degree = -1
 
@@ -29,7 +26,7 @@ class RelationGraph:
 
         return max_vertex
 
-    def max_depth_in_component(self, start_vertex):
+    def max_depth_in_component(self, start_vertex: EntityMain) -> int:
         visited = set()
         queue = deque([(start_vertex, 0)])  # (текущая вершина, глубина)
         max_distance = 0

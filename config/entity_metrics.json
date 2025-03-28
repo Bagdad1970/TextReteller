@@ -2,13 +2,8 @@
   "nsubj": 1.0,
   "obj": 0.90,
   "obl": 0.40,
-  "iobj": 0.15,
+  "iobj": 0.50,
   "nmod": 0.30,
   "amod": 0.25,
-  "nsubj:pass": 1.0,
-  "obj:pass": 0.90,
-  "obl:pass": 0.40,
-  "iobj:pass": 0.15,
-  "nmod:pass": 0.30,
-  "amod:pass": 0.25
+  "nsubj:pass": 1.0
 }

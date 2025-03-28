@@ -1,12 +1,12 @@
-from lib.Entity import Entity
-from lib.EntityMain import EntityMain
+from src.Entity import Entity
+from src.EntityMain import EntityMain
 
 class EntityDict:
     def __init__(self):
         self.entities = dict()
 
     @classmethod
-    def create_from_list(cls, entities):
+    def create_from_list(cls, entities: list):
         entity_dict = cls()  # Создаем экземпляр текущего класса
         for entity in entities:
             entity_dict.add_entity(entity)
@@ -30,12 +30,7 @@ class EntityDict:
     def is_entity_name(self, name: str) -> bool:
         return name in self.entities
 
-    def __getattr__(self, name):
-        if name in self.entities:
-            return self.entities[name]
-        raise AttributeError(f"No entity found with name '{name}'")
-
-    def __getitem__(self, name):
+    def __getitem__(self, name: str):
         if name in self.entities:
             return self.entities[name]
         raise KeyError(f"No entity found with name '{name}'")
@@ -43,7 +38,7 @@ class EntityDict:
     def __iter__(self):
         return iter(self.entities.values())
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.entities)
 
     def __str__(self):

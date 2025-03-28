@@ -2,7 +2,6 @@ from natasha.doc import DocToken
 from src.EntityDict import EntityDict
 from src.NameNormalizer import NameNormalizer
 from src.TokenID import TokenID
-from src.RelationGraph import RelationGraph
 
 class RelationDefiner(TokenID, NameNormalizer):
     relations_importance = {"nsubj": 6, "obj": 5, "iobj": 4, "obl": 3,

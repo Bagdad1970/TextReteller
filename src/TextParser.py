@@ -6,18 +6,17 @@ class TextParser:
     morph_tagger = NewsMorphTagger(embedding)
     syntax_parser = NewsSyntaxParser(embedding)
 
-    parsed_text = None
+    def __init__(self, text):
+        self.parsed_text = self.parse_text(text)
 
-    @classmethod
-    def get_parsed_text(cls, text: str = ''):
-        if text != '':
-            cls.set_parsed_text(text)
-        return cls.parsed_text
+    def parse_text(self, text: str):
+        if text == '':
+            pass # raise Exception
+        doc = Doc(text)
+        doc.segment(self.segmenter)
+        doc.tag_morph(self.morph_tagger)
+        doc.parse_syntax(self.syntax_parser)
+        return doc
 
-    @classmethod
-    def set_parsed_text(cls, new_text):
-        doc = Doc(new_text)
-        doc.segment(cls.segmenter)
-        doc.tag_morph(cls.morph_tagger)
-        doc.parse_syntax(cls.syntax_parser)
-        cls.parsed_text = doc
+    def get_parsed_text(self) -> Doc:
+        return self.parsed_text

@@ -1,14 +1,14 @@
-from TextParser import TextParser
-from lib.EntityDict import EntityDict
-from lib.NameNormalizer import NameNormalizer
-from lib.TokenID import TokenID
+from src.EntityDict import EntityDict
+from src.NameNormalizer import NameNormalizer
+from src.TokenID import TokenID
 
 
 class CleanerRelatedTokens(TokenID, NameNormalizer):
-    def __init__(self, text, week_entity_dict: EntityDict):
-        self.parsed_text = TextParser.get_parsed_text(text)
+    def __init__(self, parsed_text, week_entity_dict: EntityDict):
+        self.parsed_text = parsed_text
         self.week_entity_dict = week_entity_dict
-        self.indexes_on_delete = [[] for _ in range(len(self.parsed_text.sents))]
+
+        self.indexes_on_delete = [set() for _ in range(len(self.parsed_text.sents))]
 
     def find_token_associated_forward_with_week_entity(self, sent_index: int, word_index: int):
         """
@@ -42,7 +42,7 @@ class CleanerRelatedTokens(TokenID, NameNormalizer):
 
         if depth > 0:
             token_sent_index, token_word_index = self.id_to_tuple_index(token.id)
-            self.indexes_on_delete[token_sent_index].append(token_word_index)  # добавляем индексы токена
+            self.indexes_on_delete[token_sent_index].add(token_word_index)  # добавляем индексы токена
 
             if token.pos == 'VERB':
                 # если встречается глагол, то необходимо для него найти список всех сущностей, зависимых от него
@@ -51,18 +51,19 @@ class CleanerRelatedTokens(TokenID, NameNormalizer):
                 for associated_entity in associated_entities:
                     self.recursive_token_descent(associated_entity, depth, visited)
 
-            elif token.pos == 'NOUN' or token.pos == 'PROPN':
+            elif token.pos == 'NOUN':
                 # если все сущности слабые, то продолжаем рекурсивно добавлять индексы
-                normalized_name = self.name_to_normal_form(token.text)
-                if self.week_entity_dict.is_entity_name(normalized_name):
+                #if self.week_entity_dict.is_entity_name(normalized_name):
                     # если некоторые сущности явл. сильными, то для них спуск прекращается,
                     # а для слабых продолжается и множество индексов очищается
-                    self.indexes_on_delete[token_sent_index].clear()
-                else:
-                    dependent_tokens = self.get_dependent_tokens(token)
-                    depth += 1
-                    for dependent_token in dependent_tokens:
-                        self.recursive_token_descent(dependent_token, depth, visited)
+                    # self.indexes_on_delete[token_sent_index].clear()
+                    # вычесть из indexes_on_delete indexes_buffer
+                #else:
+                normalized_name = self.name_to_normal_form(token.text)
+                dependent_tokens = self.get_dependent_tokens(token)
+                depth += 1
+                for dependent_token in dependent_tokens:
+                    self.recursive_token_descent(dependent_token, depth, visited)
             else:
                 dependent_tokens = self.get_dependent_tokens(token)
                 depth += 1
@@ -78,7 +79,6 @@ class CleanerRelatedTokens(TokenID, NameNormalizer):
         if associated_entities:
             for entity in associated_entities:
                 self.recursive_token_descent(entity, 0)
-
 
     def find_delete_indexes(self) -> list:
         # если и зависимость слабой сущности является слабой, то и её можно удалить
