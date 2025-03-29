@@ -1,5 +1,5 @@
-from src.EntityDict import EntityDict
-from src.Config import Config
+from src.entity_dict import EntityDict
+from src.config import Config
 from src.entity import Entity
 
 
@@ -11,16 +11,26 @@ class ImportanceCounter(Config):
         self.entity_dict = entity_dict
 
     def importance_for_entity(self, entity: Entity) -> float:
-        relation_sum = 0
+        """
+        Calculates importance for an entity.
+        Entity importance is ratio of the total measure of the syntax roles of a word to the total number of sentences in text
+        :param entity:
+        :return: Ratio of total measure roles to the number sentences in text
+        """
+
+        relation_sum = 0.0
         try:
             for relation in entity.relations:
                 relation_sum += self.metrics[relation]
         except KeyError:
             pass
 
-        amount_sents_in_text = len(self.parsed_text.sents)
-        return relation_sum / amount_sents_in_text
+        return relation_sum / len(self.parsed_text.sents)
 
-    def count_importances(self) -> None:
+    def calculate_importance(self) -> None:
+        """
+        Calculates importance for every entity and assigns it to the importance field of entity
+        """
+
         for entity in self.entity_dict:
             entity.importance = self.importance_for_entity(entity)
