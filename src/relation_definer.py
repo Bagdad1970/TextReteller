@@ -1,9 +1,9 @@
 from natasha.doc import DocToken
-from src.EntityDict import EntityDict
-from src.NameNormalizer import NameNormalizer
-from src.TokenID import TokenID
+from src.entity_dict import EntityDict
+from src.word_normalizer import WordNormalizer
+from src.token_id import TokenID
 
-class RelationDefiner(TokenID, NameNormalizer):
+class RelationDefiner(TokenID, WordNormalizer):
     relations_importance = {"nsubj": 6, "obj": 5, "iobj": 4, "obl": 3,
                             "nmod": 2, "amod": 1, "nsubj:pass": 6
                             }
@@ -19,7 +19,7 @@ class RelationDefiner(TokenID, NameNormalizer):
         :param tokens: Токены одинакового глагола
         :return: Список индексов отсортированных по rels
         """
-        token_rels = [(cls.id_to_word_index(token.id), cls.relations_importance[token.rel]) for token in tokens]
+        token_rels = [(cls.get_word_index(token.id), cls.relations_importance[token.rel]) for token in tokens]
         return [token[0] for token in sorted(token_rels, key=lambda x: x[1], reverse=True)]
 
     @classmethod
@@ -29,7 +29,7 @@ class RelationDefiner(TokenID, NameNormalizer):
         for token in tokens:
             if token.pos == 'NOUN':  # добавить PROPN (?)
                 try:
-                    dependency_index = cls.id_to_word_index(token.head_id)
+                    dependency_index = cls.get_word_index(token.head_id)
                     dependency = tokens[dependency_index]
                     if dependency.pos == 'VERB':
                         verb_text = dependency.text

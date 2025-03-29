@@ -1,8 +1,8 @@
-from src.EntityBasic import EntityBasic
-from src.NameNormalizer import NameNormalizer
+from src.entity_basic import EntityBasic
+from src.word_normalizer import WordNormalizer
 
 
-class Entity(NameNormalizer):
+class Entity(WordNormalizer):
     """
     Represents a noun in text. It can be named (Mr. Smith) or unnamed (cat, door).
     """
@@ -16,7 +16,7 @@ class Entity(NameNormalizer):
         sentence_word_indexes: dict = None,
         relations: list = None,
     ):
-        self.name = self.name_to_normal_form(name)
+        self.name = WordNormalizer.name_to_normal_form(name)
         self.coherence = coherence
         self.importance = importance
         self.total_weight = self.coherence * self.importance
@@ -25,24 +25,29 @@ class Entity(NameNormalizer):
         )
         self.relations = relations if relations is not None else []
 
-    def __calculate_total_weight(self):
+    def __calculate_total_weight(self) -> None:
         self.total_weight = self.importance * self.coherence
 
     def separate_entity_main(self):
         return EntityBasic.create_from_entity(self)
 
-    def attach_entity_main(self, entity_basic: EntityBasic):
+    def attach_entity_main(self, entity_basic: EntityBasic) -> None:
         self.importance = entity_basic.importance
         self.coherence = entity_basic.coherence
         self.__calculate_total_weight()
 
-    def add_index(self, sent_index: int, word_index: int):
+    def add_index(self, sent_index: int, word_index: int) -> None:
+        """
+        Add sentence and word indexes to entity, when it occurs in the text
+        :param sent_index: sentence index
+        :param word_index: word index
+        """
         if sent_index not in self.sentence_word_indexes:
             self.sentence_word_indexes[sent_index] = [word_index]
         else:
             self.sentence_word_indexes[sent_index].append(word_index)
 
-    def add_indexes(self, sent_word_indexes: dict[int, list]):
+    def add_indexes(self, sent_word_indexes: dict[int, list]) -> None:
         if sent_word_indexes is not None:
             for sent_index, word_indexes in sent_word_indexes.items():
                 if sent_index not in self.sentence_word_indexes:

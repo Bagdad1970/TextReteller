@@ -11,7 +11,8 @@ class TextParser:
 
     def parse_text(self, text: str):
         if text == '':
-            pass # raise Exception
+            raise ValueError("Invalid text")
+
         doc = Doc(text)
         doc.segment(self.segmenter)
         doc.tag_morph(self.morph_tagger)
@@ -20,3 +21,14 @@ class TextParser:
 
     def get_parsed_text(self) -> Doc:
         return self.parsed_text
+
+    def get_parsed_sents(self) -> Doc:
+        return self.parsed_text.sents
+
+
+
+parsed_text=TextParser('Кошки не едят овощи. Собаки едят мясо').get_parsed_text()
+print(parsed_text.tokens)
+
+for sent in parsed_text.sents:
+    print(sent.tokens)

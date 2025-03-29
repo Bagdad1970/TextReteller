@@ -1,6 +1,6 @@
-from src.Entity import Entity
-from src.EntityDict import EntityDict
-from src.TextParser import TextParser
+from src.entity import Entity
+from src.entity_dict import EntityDict
+from src.text_parser import TextParser
 
 
 class EntityFinder:

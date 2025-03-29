@@ -1,5 +1,5 @@
-from src.Entity import Entity
-from EntityDict import EntityDict
+from src.entity import Entity
+from entity_dict import EntityDict
 import stanza
 
 class NamedEntityFinder:

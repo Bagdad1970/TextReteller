@@ -1,6 +1,6 @@
-from src.ImportanceCounter import ImportanceCounter
+from src.importance_counter import ImportanceCounter
 from src.RelationDefiner import RelationDefiner
-from src.EntityDict import EntityDict
+from src.entity_dict import EntityDict
 from src.TextParser import TextParser
 
 

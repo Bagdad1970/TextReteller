@@ -1,13 +1,13 @@
-from src.Entity import Entity
-from src.EntityMain import EntityMain
+from src.entity import Entity
+from src.entity_basic import EntityBasic
 
 class EntityDict:
-    def __init__(self):
+    def __init__(self, entities:list=None):
         self.entities = dict()
 
     @classmethod
     def create_from_list(cls, entities: list):
-        entity_dict = cls()  # Создаем экземпляр текущего класса
+        entity_dict = cls()
         for entity in entities:
             entity_dict.add_entity(entity)
         return entity_dict
@@ -23,7 +23,7 @@ class EntityDict:
             self.entities[new_entity.name].add_indexes(new_entity.sentence_word_indexes)
             self.entities[new_entity.name].add_relations(new_entity.relations)
 
-    def attach_entity_mains(self, entity_mains: list[EntityMain]):
+    def attach_entity_mains(self, entity_mains: list[EntityBasic]):
         for entity_main in entity_mains:
             self.entities[entity_main.name].attach_entity_main(entity_main)
 
@@ -34,6 +34,9 @@ class EntityDict:
         if name in self.entities:
             return self.entities[name]
         raise KeyError(f"No entity found with name '{name}'")
+
+    def __eq__(self, other):
+        return self.entities == other.entities
 
     def __iter__(self):
         return iter(self.entities.values())

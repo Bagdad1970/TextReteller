@@ -1,6 +1,6 @@
 from src.EntityDict import EntityDict
 from src.Config import Config
-from src.Entity import Entity
+from src.entity import Entity
 
 
 class ImportanceCounter(Config):
