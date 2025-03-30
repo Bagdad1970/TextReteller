@@ -28,10 +28,10 @@ class Entity(WordNormalizer):
     def __calculate_total_weight(self) -> None:
         self.total_weight = self.importance * self.coherence
 
-    def separate_entity_main(self):
+    def separate_entity_basic(self):
         return EntityBasic.create_from_entity(self)
 
-    def attach_entity_main(self, entity_basic: EntityBasic) -> None:
+    def attach_entity_basic(self, entity_basic: EntityBasic) -> None:
         self.importance = entity_basic.importance
         self.coherence = entity_basic.coherence
         self.__calculate_total_weight()

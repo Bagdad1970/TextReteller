@@ -25,7 +25,7 @@ class EntityDict:
 
     def attach_entity_mains(self, entity_mains: list[EntityBasic]):
         for entity_main in entity_mains:
-            self.entities[entity_main.name].attach_entity_main(entity_main)
+            self.entities[entity_main.name].attach_entity_basic(entity_main)
 
     def is_entity_name(self, name: str) -> bool:
         return name in self.entities
