@@ -1,11 +1,13 @@
+from natasha import Doc
+
 from src.entity import Entity
 from src.entity_dict import EntityDict
-from src.text_parser import TextParser
+from src.word_normalizer import WordNormalizer
 
 
-class EntityFinder:
-    def __init__(self, text_parser: TextParser):
-        self.parsed_text = text_parser.get_parsed_text()
+class EntityFinder(WordNormalizer):
+    def __init__(self, parsed_text: Doc):
+        self.parsed_text = parsed_text
 
     def find_simple_entities(self) -> EntityDict:
         """
@@ -21,9 +23,9 @@ class EntityFinder:
             for word_index, word in enumerate(sentence.tokens):
                 if word.pos == 'NOUN':
                     # продолжаем читать слова, пока не закончится flat::... т.к. может быть именованой сущностью
-                    entity = Entity(name=word.text)
-                    entity.add_index(sent_index, word_index)
-                    entity.add_relation(word.rel)
+                    entity = Entity(name=word.text,
+                                    sentence_word_indexes={sent_index: [word_index]},
+                                    relations=[word.rel])
 
                     entity_dict.add_entity(entity)
 
