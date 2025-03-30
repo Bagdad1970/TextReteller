@@ -16,7 +16,7 @@ class Entity(WordNormalizer):
         sentence_word_indexes: dict = None,
         relations: list = None,
     ):
-        self.name = WordNormalizer.name_to_normal_form(name)
+        self.name = WordNormalizer.word_to_normal_form(name)
         self.coherence = coherence
         self.importance = importance
         self.total_weight = self.coherence * self.importance

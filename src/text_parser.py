@@ -1,4 +1,8 @@
-from natasha import Doc, NewsSyntaxParser, NewsEmbedding, Segmenter, NewsMorphTagger
+from natasha import (Doc,
+                     NewsSyntaxParser,
+                     NewsEmbedding,
+                     Segmenter,
+                     NewsMorphTagger)
 
 class TextParser:
     segmenter = Segmenter()
@@ -21,14 +25,3 @@ class TextParser:
 
     def get_parsed_text(self) -> Doc:
         return self.parsed_text
-
-    def get_parsed_sents(self) -> Doc:
-        return self.parsed_text.sents
-
-
-
-parsed_text=TextParser('Кошки не едят овощи. Собаки едят мясо').get_parsed_text()
-print(parsed_text.tokens)
-
-for sent in parsed_text.sents:
-    print(sent.tokens)

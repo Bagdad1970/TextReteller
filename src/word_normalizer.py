@@ -1,8 +1,8 @@
 from pymorphy3 import MorphAnalyzer
 
-class NameNormalizer:
+class WordNormalizer:
     morph = MorphAnalyzer()
 
     @classmethod
-    def name_to_normal_form(cls, name):
+    def word_to_normal_form(cls, name):
         return cls.morph.parse(name)[0].normal_form
