@@ -4,7 +4,7 @@ from collections import UserDict
 
 
 class EntityDict(UserDict):
-    def __init__(self, entities:list=None):
+    def __init__(self, entities: list = None):
         super().__init__()
         if entities is not None:
             for entity in entities:

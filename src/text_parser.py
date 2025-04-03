@@ -1,8 +1,5 @@
-from natasha import (Doc,
-                     NewsSyntaxParser,
-                     NewsEmbedding,
-                     Segmenter,
-                     NewsMorphTagger)
+from natasha import Doc, NewsSyntaxParser, NewsEmbedding, Segmenter, NewsMorphTagger
+
 
 class TextParser:
     segmenter = Segmenter()
@@ -15,7 +12,7 @@ class TextParser:
 
     @classmethod
     def parse_text(cls, text: str):
-        if text == '':
+        if text == "":
             raise ValueError("Invalid text")
 
         doc = Doc(text)

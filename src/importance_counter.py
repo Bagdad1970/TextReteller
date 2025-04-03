@@ -4,7 +4,7 @@ from src.entity import Entity
 
 
 class ImportanceCounter(Config):
-    metrics = Config.load_config('entity_metrics.json')
+    metrics = Config.load_config("entity_metrics.json")
 
     def __init__(self, parsed_text, entity_dict: EntityDict):
         self.parsed_text = parsed_text

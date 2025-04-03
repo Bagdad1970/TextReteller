@@ -21,11 +21,13 @@ class EntityFinder(WordNormalizer):
         # после этого также проверяется к какой части речи принадлежит слово
         for sent_index, sentence in enumerate(self.parsed_text.sents):
             for word_index, word in enumerate(sentence.tokens):
-                if word.pos == 'NOUN':
+                if word.pos == "NOUN":
                     # продолжаем читать слова, пока не закончится flat::... т.к. может быть именованой сущностью
-                    entity = Entity(name=word.text,
-                                    sentence_word_indexes={sent_index: [word_index]},
-                                    relations=[word.rel])
+                    entity = Entity(
+                        name=word.text,
+                        sentence_word_indexes={sent_index: [word_index]},
+                        relations=[word.rel],
+                    )
 
                     entity_dict.add_entity(entity)
 

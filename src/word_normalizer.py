@@ -1,5 +1,6 @@
 from pymorphy3 import MorphAnalyzer
 
+
 class WordNormalizer:
     morph = MorphAnalyzer()
 
