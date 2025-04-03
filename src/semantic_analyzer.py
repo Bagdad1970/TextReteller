@@ -1,7 +1,7 @@
 from src.importance_counter import ImportanceCounter
-from src.RelationDefiner import RelationDefiner
+from src.relation_definer import RelationDefiner
 from src.entity_dict import EntityDict
-from src.TextParser import TextParser
+from src.text_parser import TextParser
 
 
 class SemanticAnalyzer:
@@ -11,7 +11,7 @@ class SemanticAnalyzer:
         self.relation_definer = RelationDefiner(parsed_text, entities)
 
     def importance_of_entities(self):
-        self.importance_finder.count_importances()
+        self.importance_finder.calculate_importance()
 
     def relation_of_entities(self):
         return self.relation_definer.relations_of_entities()
