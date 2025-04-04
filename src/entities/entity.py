@@ -1,4 +1,4 @@
-from src.entity_basic import EntityBasic
+from src.entities.entity_basic import EntityBasic
 from src.word_normalizer import WordNormalizer
 
 

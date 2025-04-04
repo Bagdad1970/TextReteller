@@ -2,10 +2,11 @@ from natasha.doc import DocToken, Doc
 from src.entity_dict import EntityDict
 from src.word_normalizer import WordNormalizer
 from src.token_id import TokenID
+from collections import defaultdict
 
 
 class RelationDefiner(TokenID, WordNormalizer):
-    relations_priority = {
+    relations_priority = defaultdict(lambda: -1, {
         "nsubj": 6,
         "obj": 5,
         "iobj": 4,
@@ -13,7 +14,7 @@ class RelationDefiner(TokenID, WordNormalizer):
         "nmod": 2,
         "amod": 1,
         "nsubj:pass": 6,
-    }
+    })
 
     def __init__(self, parsed_text: Doc, entity_dict: EntityDict):
         self.__parsed_text = parsed_text

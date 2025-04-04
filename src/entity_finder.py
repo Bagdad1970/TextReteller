@@ -1,6 +1,6 @@
 from natasha import Doc
 
-from src.entity import Entity
+from src.entities.entity import Entity
 from src.entity_dict import EntityDict
 from src.word_normalizer import WordNormalizer
 
@@ -15,6 +15,7 @@ class EntityFinder(WordNormalizer):
         Entities like Smith, Brooklin street are not simple entities, there are named entities
         :return: Instance of EntityDict, that stores simple text entities
         """
+
         entity_dict = EntityDict()
         # найдем root (сказуемое)
         # то слово типа nsubj, obj, ..., которое с ним связано через head_id, явл. подлежащим
@@ -26,7 +27,7 @@ class EntityFinder(WordNormalizer):
                     entity = Entity(
                         name=word.text,
                         sentence_word_indexes={sent_index: [word_index]},
-                        relations=[word.rel],
+                        relations=[word.rel]
                     )
 
                     entity_dict.add_entity(entity)
