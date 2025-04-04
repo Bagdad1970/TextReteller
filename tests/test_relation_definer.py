@@ -1,7 +1,5 @@
-import pytest
-
 from src.entity_finder import EntityFinder
-from src.relation_definer import RelationDefiner
+from src.semantic_processing.relation_definer import RelationDefiner
 from src.text_parser import TextParser
 
 

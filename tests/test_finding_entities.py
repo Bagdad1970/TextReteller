@@ -1,9 +1,7 @@
-import pytest
-
 from src.entity_dict import EntityDict
 from src.text_parser import TextParser
 from src.entity_finder import EntityFinder
-from src.entity import Entity
+from src.entities.entity import Entity
 
 
 def test_finding_simple_entities():

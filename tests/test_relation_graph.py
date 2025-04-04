@@ -1,8 +1,8 @@
 import networkx
 import pytest
 
-from src.entity_basic import EntityBasic
-from src.relation_graph import RelationGraph
+from src.entities.entity_basic import EntityBasic
+from src.semantic_processing.relation_graph import RelationGraph
 
 
 @pytest.fixture
