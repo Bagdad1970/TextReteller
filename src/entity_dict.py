@@ -1,5 +1,5 @@
-from src.entity import Entity
-from src.entity_basic import EntityBasic
+from src.entities.entity import Entity
+from src.entities.entity_basic import EntityBasic
 from collections import UserDict
 
 
@@ -9,10 +9,6 @@ class EntityDict(UserDict):
         if entities is not None:
             for entity in entities:
                 self.add_entity(entity)
-
-    @classmethod
-    def create_from_list(cls, entities: list):
-        return cls(entities)
 
     def add_entity(self, new_entity: Entity) -> None:
         """
