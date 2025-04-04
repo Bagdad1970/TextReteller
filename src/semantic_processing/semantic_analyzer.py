@@ -1,12 +1,11 @@
-from src.importance_counter import ImportanceCounter
-from src.relation_definer import RelationDefiner
+from src.semantic_processing.importance_counter import ImportanceCounter
+from src.semantic_processing.relation_definer import RelationDefiner
 from src.entity_dict import EntityDict
-from src.text_parser import TextParser
+from natasha import Doc
 
 
 class SemanticAnalyzer:
-    def __init__(self, text_parser: TextParser, entities: EntityDict):
-        parsed_text = text_parser.get_parsed_text()
+    def __init__(self, parsed_text: Doc, entities: EntityDict):
         self.importance_finder = ImportanceCounter(parsed_text, entities)
         self.relation_definer = RelationDefiner(parsed_text, entities)
 

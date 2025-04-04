@@ -1,6 +1,6 @@
 from src.entity_dict import EntityDict
 from src.config import Config
-from src.entity import Entity
+from src.entities.entity import Entity
 
 
 class ImportanceCounter(Config):
@@ -19,6 +19,7 @@ class ImportanceCounter(Config):
         """
 
         relation_sum = 0.0
+
         try:
             for relation in entity.relations:
                 relation_sum += self.metrics[relation]
@@ -32,5 +33,5 @@ class ImportanceCounter(Config):
         Calculates importance for every entity and assigns it to the importance field of entity
         """
 
-        for entity in self.entity_dict:
+        for entity in self.entity_dict.values():
             entity.importance = self.importance_for_entity(entity)
