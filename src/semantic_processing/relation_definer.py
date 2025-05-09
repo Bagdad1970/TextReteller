@@ -48,9 +48,7 @@ class RelationDefiner(TokenID, WordNormalizer):
         """
         verbs_dict = dict()
 
-        noun_tokens = filter(
-            lambda token: token.pos == "NOUN", tokens
-        )  # добавить PROPN (?)
+        noun_tokens = filter(lambda token: token.pos == "NOUN", tokens)  # добавить PROPN (?)
         for token in noun_tokens:
             try:
                 dependency_index = TokenID.get_word_index(token.head_id)
@@ -83,9 +81,7 @@ class RelationDefiner(TokenID, WordNormalizer):
         for verb, nouns in verb_nouns_in_sentence.items():
             sorted_by_rels_indexes = self.sort_entity_importance_by_relation(nouns)
 
-            associated_noun_pairs = zip(
-                sorted_by_rels_indexes, sorted_by_rels_indexes[1:]
-            )
+            associated_noun_pairs = zip(sorted_by_rels_indexes, sorted_by_rels_indexes[1:])
             for indexes in associated_noun_pairs:
                 current_sentence_tokens = self.__parsed_text.sents[sent_index].tokens
 
@@ -117,12 +113,8 @@ class RelationDefiner(TokenID, WordNormalizer):
             elif token.pos == "NOUN":
                 return token
 
-        head_token_sent_index, head_token_word_index = TokenID.get_tuple_index(
-            token.head_id
-        )
-        head_token = self.__parsed_text.sents[head_token_sent_index].tokens[
-            head_token_word_index
-        ]
+        head_token_sent_index, head_token_word_index = TokenID.get_tuple_index(token.head_id)
+        head_token = self.__parsed_text.sents[head_token_sent_index].tokens[head_token_word_index]
         return self.__recursive_iter(head_token, depth + 1, visited)
 
     def nouns_dependent_from_nouns_in_sentence(self, tokens: list) -> list:
@@ -173,9 +165,7 @@ class RelationDefiner(TokenID, WordNormalizer):
         for sent_index, sentence in enumerate(self.__parsed_text.sents):
             tokens = sentence.tokens
 
-            dependent_from_verbs = self.arrange_dependencies_between_nouns_by_priority(
-                sent_index, tokens
-            )
+            dependent_from_verbs = self.arrange_dependencies_between_nouns_by_priority(sent_index, tokens)
             dependent_from_nouns = self.nouns_dependent_from_nouns_in_sentence(tokens)
 
             for couple_entities in dependent_from_verbs + dependent_from_nouns:

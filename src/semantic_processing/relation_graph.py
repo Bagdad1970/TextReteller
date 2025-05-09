@@ -81,7 +81,7 @@ class RelationGraph:
                 if current_vertex in visited:
                     continue
 
-                current_vertex.coherence = 1 - depth / (max_depth + 1)
+                current_vertex.coherence += (1 - depth / (max_depth + 1)) / networkx.number_connected_components(self.Graph)
                 visited.add(current_vertex)
 
                 for neighbour in self.Graph.neighbors(current_vertex):

@@ -4,7 +4,8 @@ from src.entities.entity import Entity
 
 
 class ImportanceCounter(Config):
-    metrics = Config.load_config("entity_metrics.json")
+
+    METRICS = Config.load_config('entity_metrics.json')
 
     def __init__(self, parsed_text, entity_dict: EntityDict):
         self.parsed_text = parsed_text
@@ -20,11 +21,9 @@ class ImportanceCounter(Config):
 
         relation_sum = 0.0
 
-        try:
-            for relation in entity.relations:
-                relation_sum += self.metrics[relation]
-        except KeyError:
-            pass
+        for relation in entity.relations:
+            if self.METRICS.get(relation, None) is not None:
+                relation_sum += self.METRICS[relation]
 
         return relation_sum / len(self.parsed_text.sents)
 
