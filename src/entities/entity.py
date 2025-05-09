@@ -11,7 +11,7 @@ class Entity(WordNormalizer):
         self,
         name: str,
         *,
-        coherence: float = 1.0,
+        coherence: float = 0.0,
         importance: float = 1.0,
         sentence_word_indexes: dict = None,
         relations: list = None,

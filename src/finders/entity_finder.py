@@ -1,11 +1,15 @@
 from natasha import Doc
 
+from src.config import Config
 from src.entities.entity import Entity
 from src.entity_dict import EntityDict
 from src.word_normalizer import WordNormalizer
 
 
-class EntityFinder(WordNormalizer):
+class EntityFinder(WordNormalizer, Config):
+
+    METRICS = Config.load_config('entity_metrics.json')
+
     def __init__(self, parsed_text: Doc):
         self.parsed_text = parsed_text
 
@@ -29,7 +33,6 @@ class EntityFinder(WordNormalizer):
                         sentence_word_indexes={sent_index: [word_index]},
                         relations=[word.rel]
                     )
-
                     entity_dict.add_entity(entity)
 
         return entity_dict

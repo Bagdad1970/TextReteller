@@ -17,8 +17,4 @@ class EntityBasic:
         return self.name == other.name
 
     def __str__(self):
-        return (
-            f"Name: {self.name} "
-            f"Importance: {self.importance} "
-            f"Coherence: {self.coherence}"
-        )
+        return f"name={self.name} importance={self.importance} coherence={self.coherence}"

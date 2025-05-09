@@ -1,7 +1,7 @@
 from src.entity_dict import EntityDict
 
 
-def get_week_entities(entity_dict, proportion: float) -> EntityDict:
+def get_weak_entities(entity_dict, proportion: float) -> EntityDict:
     week_entities = sorted(entity_dict.values(), key=lambda entity: entity.total_weight)[
         0 : int(len(entity_dict) * proportion)
     ]
