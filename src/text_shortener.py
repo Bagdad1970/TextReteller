@@ -6,10 +6,12 @@ from src.token_id import TokenID
 
 
 class TextShortener(TokenID):
+
     def __init__(self, parsed_text, entity_dict: EntityDict, weak_entity_dict: EntityDict):
         self.parsed_text = parsed_text
         self.entity_dict = entity_dict
         self.weak_entity_dict = weak_entity_dict
+
 
     @staticmethod
     def does_sentence_contains_only_verb(root: TokenNode) -> bool:
@@ -139,18 +141,10 @@ class TextShortener(TokenID):
 
             cleared_text += cleared_sentence
 
-        return cleared_text
+        return cleared_text.strip()
 
 
     def short_text(self) -> str:
         indexes_to_delete = self.find_deleting_tokens_in_text()
 
         return self.get_shortened_text(indexes_to_delete)
-
-    #def count_delete_tokens(self) -> int:
-    #    return sum(len(index_set) for index_set in self.indexes_on_delete)
-
-    #def calculate_percentage_delete_and_original_tokens(self) -> float:
-    #    length_delete_tokens = self.count_delete_tokens()
-    #    length_original_tokens = sum(len(sent.tokens) for sent in self.parsed_text.sents)
-    #    return round(length_delete_tokens / length_original_tokens * 100, 2)

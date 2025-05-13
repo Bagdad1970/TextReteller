@@ -20,7 +20,6 @@ class ImportanceCounter(Config):
         """
 
         relation_sum = 0.0
-
         for relation in entity.relations:
             if self.METRICS.get(relation, None) is not None:
                 relation_sum += self.METRICS[relation]

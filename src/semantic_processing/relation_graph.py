@@ -24,11 +24,14 @@ class RelationGraph:
 
         max_vertex = None
         max_degree = -1
+        max_importance = -1
 
         for vertex in graph_component:
             if self.Graph.degree[vertex] > max_degree:
-                max_degree = self.Graph.degree[vertex]
-                max_vertex = vertex
+                if vertex.importance > max_importance:
+                    max_importance = vertex.importance
+                    max_degree = self.Graph.degree[vertex]
+                    max_vertex = vertex
 
         return max_vertex
 
@@ -87,6 +90,7 @@ class RelationGraph:
                 for neighbour in self.Graph.neighbors(current_vertex):
                     if neighbour not in visited:
                         queue.append((neighbour, depth + 1))
+
 
     def get_weighted_vertexes(self):
         return self.Graph.nodes
