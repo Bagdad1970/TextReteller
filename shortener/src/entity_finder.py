@@ -1,9 +1,9 @@
 from natasha import Doc
 
-from src.config import Config
-from src.entities.entity import Entity
-from src.entity_dict import EntityDict
-from src.word_normalizer import WordNormalizer
+from shortener.config import Config
+from shortener.src.entities.entity import Entity
+from shortener.src.entity_dict import EntityDict
+from shortener.word_normalizer import WordNormalizer
 
 
 class EntityFinder(WordNormalizer, Config):

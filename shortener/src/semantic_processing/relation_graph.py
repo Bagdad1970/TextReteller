@@ -44,7 +44,7 @@ class RelationGraph:
         """
 
         visited = set()
-        queue = deque([(start_vertex, 0)])  # (текущая вершина, глубина)
+        queue = deque([(start_vertex, 0)])
         max_distance = 0
 
         while queue:

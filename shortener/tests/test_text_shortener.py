@@ -32,23 +32,6 @@ class TestTextCleaner:
 
         assert sut == expected
 
-    def test_iterate_function(self):
-        text_parser = TextParser('Он играл с собакой и кошкой')
-        parsed_text = text_parser.get_parsed_text()
-
-        entity_dict = EntityDict([Entity('кошка'), Entity('собака')])
-        week_entities = EntityDict([Entity('кошка')])
-
-        text_cleaner = TextShortener(parsed_text=parsed_text,
-                                     entity_dict=entity_dict,
-                                     weak_entity_dict=week_entities)
-
-        tree = SentenceTree(parsed_text.sents[0].tokens)
-        week_node = tree.find_nodes(text='собакой')[0]
-        sut = text_cleaner.iterate_function(week_node)
-
-        assert True == True
-
 
     @pytest.mark.parametrize('text, expected', [
         ('Почему ты не играешь с кошкой.', False),

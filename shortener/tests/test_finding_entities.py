@@ -9,8 +9,10 @@ def test_finding_simple_entities():
     entity_finder = EntityFinder(text_parser.get_parsed_text())
 
     sut = entity_finder.find_simple_entities()
+    for entity in sut.values():
+        print(entity)
 
-    assert sut == EntityDict.create_from_list(
+    assert sut == EntityDict(
         [
             Entity(name="кошка", sentence_word_indexes={0: [0], 2: [0]}, relations=["nsubj", "nsubj"]),
             Entity(name="овощ", sentence_word_indexes={0: [4]}, relations=["obj"]),
