@@ -1,8 +1,8 @@
 from anytree import PreOrderIter
-from src.syntax_tree.sentence_tree import SentenceTree
-from src.entity_dict import EntityDict
-from src.syntax_tree.token_node import TokenNode
-from src.token_id import TokenID
+from .syntax_tree.sentence_tree import SentenceTree
+from .entity_dict import EntityDict
+from .syntax_tree.token_node import TokenNode
+from .token_id import TokenID
 
 
 class TextShortener(TokenID):

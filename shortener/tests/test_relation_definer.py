@@ -1,6 +1,6 @@
-from src.finders.entity_finder import EntityFinder
-from src.semantic_processing.relation_definer import RelationDefiner
-from src.text_parser import TextParser
+from shortener.finders.entity_finder import EntityFinder
+from shortener.semantic_processing.relation_definer import RelationDefiner
+from shortener.text_parser import TextParser
 
 
 class TestRelationDefiner:

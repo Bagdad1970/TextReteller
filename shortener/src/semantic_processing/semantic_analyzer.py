@@ -1,6 +1,6 @@
-from src.semantic_processing.importance_counter import ImportanceCounter
-from src.semantic_processing.relation_definer import RelationDefiner
-from src.entity_dict import EntityDict
+from .importance_counter import ImportanceCounter
+from .relation_definer import RelationDefiner
+from ..entity_dict import EntityDict
 from natasha import Doc
 
 

@@ -4,9 +4,37 @@ import json
 
 class Config:
 
-    @staticmethod
-    def load_config(filename):
-        project_dir = os.path.dirname(os.getcwd())
-        filepath = os.path.join(project_dir, "TextReteller", "config", filename)
+    METRICS = {
+        "nsubj": 1.0,
+        "nsubj:pass": 0.9,
+        "obj": 0.95,
+        "iobj": 0.85,
+        "nmod": 0.7,
+        "appos": 0.5,
+        "flat:name": 0.3,
+        "flat:foreign": 0.2,
+        "obl": 0.6,
+        "obl:agent": 0.7,
+        "obl:arg": 0.65,
+        "vocative": 0.4,
+        "orphan": 0.3,
+        "dislocated": 0.2,
+        "parataxis": 0.4,
+        "list": 0.1,
+        "xcomp": 0.6,
+        "advcl": 0.5,
+        "conj": 0.4,
+        "fixed": 0.1,
+        "goeswith": 0.1,
+        "reparandum": 0.1
+    }
+
+    @classmethod
+    def load_config(cls):
+        """project_dir = os.path.dirname(os.getcwd())
+        filepath = os.path.join(project_dir, "config", filename)
         with open(filepath, "r", encoding="utf-8") as file:
-            return json.load(file)
+            return json.load(file)"""
+
+        return cls.METRICS
+

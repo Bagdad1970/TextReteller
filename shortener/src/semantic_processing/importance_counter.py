@@ -1,11 +1,11 @@
-from src.entity_dict import EntityDict
-from src.config import Config
-from src.entities.entity import Entity
+from ..entity_dict import EntityDict
+from ..config import Config
+from ..entities.entity import Entity
 
 
 class ImportanceCounter(Config):
 
-    METRICS = Config.load_config('entity_metrics.json')
+    METRICS = Config.load_config()
 
     def __init__(self, parsed_text, entity_dict: EntityDict):
         self.parsed_text = parsed_text

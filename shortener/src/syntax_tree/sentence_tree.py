@@ -1,6 +1,6 @@
 from anytree import RenderTree
 from natasha.doc import DocToken
-from src.syntax_tree.token_node import TokenNode
+from .token_node import TokenNode
 
 
 class SentenceTree:

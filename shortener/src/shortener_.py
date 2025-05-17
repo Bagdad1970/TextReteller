@@ -1,7 +1,7 @@
-from entity_finder import EntityFinder
-from text_parser import TextParser
-import entities_by_proportion as week_entities
-from text_shortener import TextShortener
+from .entity_finder import EntityFinder
+from .text_parser import TextParser
+import entities_by_proportion
+from .text_shortener import TextShortener
 import semantic_processing as semantics
 
 
@@ -22,8 +22,8 @@ def short_text(text: str, correlation: float) -> str:
 
     entity_dict.attach_entity_mains(weighted_vertexes)
 
-    _week_entities = week_entities.get_weak_entities(entity_dict, correlation)
-    _strong_entities = week_entities.get_strong_entities(entity_dict, correlation)
+    _week_entities = entities_by_proportion.get_weak_entities(entity_dict, correlation)
+    _strong_entities = entities_by_proportion.get_strong_entities(entity_dict, correlation)
 
     text_shortener = TextShortener(
         parsed_text=parsed_text,

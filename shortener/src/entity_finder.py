@@ -1,14 +1,14 @@
 from natasha import Doc
 
-from shortener.config import Config
-from shortener.src.entities.entity import Entity
-from shortener.src.entity_dict import EntityDict
-from shortener.word_normalizer import WordNormalizer
+from .config import Config
+from .word_normalizer import WordNormalizer
+from .entities.entity import Entity
+from .entity_dict import EntityDict
 
 
 class EntityFinder(WordNormalizer, Config):
 
-    METRICS = Config.load_config('entity_metrics.json')
+    METRICS = Config.load_config()
 
     def __init__(self, parsed_text: Doc):
         self.parsed_text = parsed_text

@@ -1,8 +1,7 @@
-from src.entities.entity import Entity
-from src.entities.entity_basic import EntityBasic
+from .entities.entity import Entity
+from .entities.entity_basic import EntityBasic
 from collections import UserDict
-
-from src.word_normalizer import WordNormalizer
+from .word_normalizer import WordNormalizer
 
 
 class EntityDict(UserDict, WordNormalizer):

@@ -1,10 +1,10 @@
 import pytest
 
-from src.text_shortener import TextShortener
-from src.syntax_tree.sentence_tree import SentenceTree
-from src.text_parser import TextParser
-from src.entities.entity import Entity
-from src.entity_dict import EntityDict
+from shortener.text_shortener import TextShortener
+from shortener.src.syntax_tree.sentence_tree import SentenceTree
+from shortener.text_parser import TextParser
+from shortener.src.entities.entity import Entity
+from shortener.src.entity_dict import EntityDict
 
 
 class TestTextCleaner:

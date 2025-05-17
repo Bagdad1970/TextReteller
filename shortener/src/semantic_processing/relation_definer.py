@@ -1,7 +1,7 @@
 from natasha.doc import DocToken, Doc
-from src.entity_dict import EntityDict
-from src.word_normalizer import WordNormalizer
-from src.token_id import TokenID
+from ..entity_dict import EntityDict
+from ..word_normalizer import WordNormalizer
+from ..token_id import TokenID
 from collections import defaultdict
 
 

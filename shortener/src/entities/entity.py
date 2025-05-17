@@ -1,5 +1,5 @@
-from src.entities.entity_basic import EntityBasic
-from src.word_normalizer import WordNormalizer
+from ..word_normalizer import WordNormalizer
+from .entity_basic import EntityBasic
 
 
 class Entity(WordNormalizer):

@@ -1,4 +1,8 @@
-from natasha import Doc, NewsSyntaxParser, NewsEmbedding, Segmenter, NewsMorphTagger
+from natasha import (Doc,
+                     NewsSyntaxParser,
+                     NewsEmbedding,
+                     Segmenter,
+                     NewsMorphTagger)
 
 
 class TextParser:

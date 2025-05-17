@@ -1,7 +1,7 @@
-from src.entity_dict import EntityDict
-from src.text_parser import TextParser
-from src.finders.entity_finder import EntityFinder
-from src.entities.entity import Entity
+from shortener.src.entity_dict import EntityDict
+from shortener.text_parser import TextParser
+from shortener.finders.entity_finder import EntityFinder
+from shortener.src.entities.entity import Entity
 
 
 def test_finding_simple_entities():
