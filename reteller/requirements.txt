@@ -1,0 +1,5 @@
+aiohttp==3.11.18
+sentencepiece==0.2.0
+transformers==4.51.3
+torch==2.7.0
+gunicorn==23.0.0
