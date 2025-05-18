@@ -134,7 +134,7 @@ export default {
 
       // Валидация correlation
       if (this.correlation === null || this.correlation === '' || this.correlation < 0 || this.correlation > 1) {
-        this.correlationError = 'Корреляция должна быть от 0.0 до 1.0!';
+        this.correlationError = 'Корреляция должна быть от 0.0 до 1.0';
         hasError = true;
       }
 
@@ -149,13 +149,13 @@ export default {
       }
 
       const payload = {
-        text: this.inputText, // Исправлено с text на input_text
+        text: this.inputText,
         max_length: this.maxLength,
         correlation: this.correlation,
       };
 
       try {
-        const response = await axios.post('http://localhost:8000/summarize', payload);
+        const response = await axios.post('/api/summarize', payload);
         const { shortened_text, retelled_text } = response.data;
 
         this.shortenedText = shortened_text || '';
