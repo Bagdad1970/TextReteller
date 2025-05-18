@@ -7,7 +7,7 @@ class RuT5Reteller(RetellerStrategy):
         super().__init__(model_name='sarahai/ruT5-base-summarizer')
 
     def summarize(self, text: str, max_length: int, num_beams: int = 5):
-        """prompt = f"summarize: {text}"
+        prompt = f"summarize: {text}"
         input_ids = self.tokenizer(
             prompt,
             return_tensors="pt",
@@ -24,7 +24,7 @@ class RuT5Reteller(RetellerStrategy):
             early_stopping=True
         )
         summary = self.tokenizer.decode(output_ids[0], skip_special_tokens=True)
-        return summary"""
+        return summary
 
-        return f'Заглушка к тексту \"{text}\"'
+        #return f'Заглушка к тексту \"{text}\"'
 

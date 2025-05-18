@@ -4,12 +4,12 @@ from aiohttp import web
 import json
 
 
-RETELL_SERVICE_ADDRESS = "127.0.0.1"
+RETELL_SERVICE_ADDRESS = "0.0.0.0"
 RETELL_SERVICE_PORT = 8002
 
 routes = web.RouteTableDef()
 
-#model = retellers.RuT5Reteller()
+MODEL = retellers.RuT5Reteller()
 
 @routes.post('/retell')
 async def retell(request: web.Request) -> web.Response:
@@ -24,9 +24,9 @@ async def retell(request: web.Request) -> web.Response:
         if max_length < 0:
             raise HTTPBadRequest(text="Text length cannot be negative")
 
-        #retelled_text = model.summarize(text, max_length)
+        retelled_text = MODEL.summarize(text, max_length)
         return web.json_response(
-                            { "retelled_text" : 'Заглушка' },
+                            { "retelled_text" : retelled_text },
                                  status=200)
 
     except json.JSONDecodeError:

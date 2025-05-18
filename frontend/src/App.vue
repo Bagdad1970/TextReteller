@@ -155,7 +155,7 @@ export default {
       };
 
       try {
-        const response = await axios.post('/api/summarize', payload);
+        const response = await axios.post('http://localhost:8000/api/summarize', payload);
         const { shortened_text, retelled_text } = response.data;
 
         this.shortenedText = shortened_text || '';

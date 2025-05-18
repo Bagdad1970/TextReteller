@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-SHORT_SERVICE_ADDRESS = RETELL_SERVICE_ADDRESS = '127.0.0.1'
+SHORT_SERVICE_ADDRESS = RETELL_SERVICE_ADDRESS = '0.0.0.0'
 SHORT_SERVICE_PORT, RETELL_SERVICE_PORT = 8001, 8002
 
 app.add_middleware(
@@ -32,12 +32,12 @@ class Input(BaseModel):
     correlation: float = 0.5
 
 
-@app.post('/api/short')
+@app.post('/short')
 async def short(shortener_input: ShortenerInput):
     try:
         async with httpx.AsyncClient() as client:
             response = await client.post(
-                f'http://localhost:{SHORT_SERVICE_PORT}/short',
+                f'http://{SHORT_SERVICE_ADDRESS}:{SHORT_SERVICE_PORT}/short',
                 headers={'Content-Type': 'application/json'},
                 json=shortener_input.model_dump(),
             )
@@ -56,12 +56,13 @@ async def short(shortener_input: ShortenerInput):
         )
 
 
-@app.post('/api/retell')
-async def short(reteller_input: RetellerInput):
+@app.post('/retell')
+async def retell(reteller_input: RetellerInput):
     try:
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(timeout=15) as client:
+            print(reteller_input)
             response = await client.post(
-                f'http://localhost:{RETELL_SERVICE_PORT}/retell',
+                f'http://{RETELL_SERVICE_ADDRESS}:{RETELL_SERVICE_PORT}/retell',
                 headers={'Content-Type': 'application/json'},
                 json=reteller_input.model_dump(),
             )
@@ -83,11 +84,11 @@ async def short(reteller_input: RetellerInput):
 @app.post('/api/summarize')
 async def summarize(input: Input):
     try:
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(timeout=20) as client:
 
             shortener_input = ShortenerInput(text=input.text, correlation=input.correlation)
             shortener_response = await client.post(
-                f'http://localhost:{SHORT_SERVICE_PORT}/api/short',
+                f'http://localhost:{SHORT_SERVICE_PORT}/short',
                 headers={'Content-Type' : 'application/json'},
                 json=shortener_input.model_dump(),
             )
@@ -96,7 +97,7 @@ async def summarize(input: Input):
 
             reteller_input = RetellerInput(text=shortener_response.text, max_length=input.max_length)
             reteller_response = await client.post(
-                f'http://localhost:{RETELL_SERVICE_PORT}/api/retell',
+                f'http://localhost:{RETELL_SERVICE_PORT}/retell',
                 headers={'Content-Type': 'application/json'},
                 json=reteller_input.model_dump(),
             )
