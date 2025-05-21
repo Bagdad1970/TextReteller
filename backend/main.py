@@ -11,7 +11,7 @@ SHORT_SERVICE_PORT, RETELL_SERVICE_PORT = 8001, 8002
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:8080",
-                   "http://akinator.kubsu.k-lab.su"],
+                   "http://text-reteller.k-lab.su"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -84,7 +84,7 @@ async def retell(reteller_input: RetellerInput):
 @app.post('/api/summarize')
 async def summarize(input: Input):
     try:
-        async with httpx.AsyncClient(timeout=20) as client:
+        async with httpx.AsyncClient(timeout=25) as client:
 
             shortener_input = ShortenerInput(text=input.text, correlation=input.correlation)
             shortener_response = await client.post(
@@ -93,16 +93,15 @@ async def summarize(input: Input):
                 json=shortener_input.model_dump(),
             )
             shortener_response.raise_for_status()
-            print(shortener_response)
+            shortener_data = shortener_response.json()
 
-            reteller_input = RetellerInput(text=shortener_response.text, max_length=input.max_length)
+            reteller_input = RetellerInput(text=shortener_data.get('shortened_text'), max_length=input.max_length)
             reteller_response = await client.post(
                 f'http://localhost:{RETELL_SERVICE_PORT}/retell',
                 headers={'Content-Type': 'application/json'},
                 json=reteller_input.model_dump(),
             )
             reteller_response.raise_for_status()
-            print(reteller_response)
 
             return { **reteller_response.json(), **shortener_response.json() }
 

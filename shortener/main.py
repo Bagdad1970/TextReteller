@@ -34,7 +34,6 @@ def short_text(text: str, correlation: float) -> str:
     return text_shortener.short_text()
 
 
-
 SHORT_SERVICE_ADDRESS = "0.0.0.0"
 SHORT_SERVICE_PORT = 8001
 
@@ -88,4 +87,11 @@ app = web.Application()
 app.add_routes(routes)
 
 if __name__ == "__main__":
-    web.run_app(app, host=SHORT_SERVICE_ADDRESS, port=SHORT_SERVICE_PORT)
+    #web.run_app(app, host=SHORT_SERVICE_ADDRESS, port=SHORT_SERVICE_PORT)
+
+    text = """
+    Зонд провел их сквозь плотные облака туда, где туман был не столь густым, что позволило увидеть формы жизни на планете.
+    Движение газа отражалось чрезвычайно сложным, непрерывно меняющимся узором линий.
+    """
+
+    print(short_text(text, 0.5))

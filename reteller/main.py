@@ -16,7 +16,7 @@ async def retell(request: web.Request) -> web.Response:
     try:
         data = await request.json()
         text = data.get("text", "").strip()
-        max_length = int(data.get("correlation", 100))
+        max_length = int(data.get("max_length", 100))
 
         if not text:
             raise HTTPBadRequest(text='Text cannot be empty')
@@ -32,7 +32,7 @@ async def retell(request: web.Request) -> web.Response:
     except json.JSONDecodeError:
         raise HTTPBadRequest(text='Invalid JSON data')
     except Exception as error:
-        HTTPInternalServerError(text=f"Error shortening text: {str(error)}")
+        raise HTTPInternalServerError(text=f"Error shortening text: {str(error)}")
 
 @routes.get('/')
 async def root() -> web.Response:

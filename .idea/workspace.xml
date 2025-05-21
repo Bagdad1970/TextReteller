@@ -1,30 +1,299 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fb0fd64-c57c-422c-8f81-3e2875d12cb3" name="Changes" comment="" />
+    <list default="true" id="4fb0fd64-c57c-422c-8f81-3e2875d12cb3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TextReteller.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TextReteller.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reteller/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/reteller/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reteller/src/reteller_models/rut5_reteller.py" beforeDir="false" afterPath="$PROJECT_DIR$/reteller/src/reteller_models/rut5_reteller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortener/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/shortener/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortener/src/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortener/src/shortener_.py" beforeDir="false" afterPath="$PROJECT_DIR$/shortener/src/shortener_.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortener/src/text_shortener.py" beforeDir="false" afterPath="$PROJECT_DIR$/shortener/src/text_shortener.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortener/tests/test_finding_entities.py" beforeDir="false" afterPath="$PROJECT_DIR$/shortener/tests/test_finding_entities.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Unit Test" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2o7lteSkCTlCehLApx0jdEWrMIR" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python tests.Python tests for test_ImportanceCounter.MyTestCase.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_ImportanceCounter.MyTestCase.test_find_weight.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_ImportanceCounter.MyTestCase.test_something.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_RelationDefiner.MyTestCase.test_verbs_dependencies_in_sentence.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_finding_entities.test_finding_entities.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_finding_entities.test_finding_simple_entities.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_loops_in_tree.test_loops_in_tree.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_relation_definer.TestRelationDefiner.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_relation_definer.TestRelationDefiner.test_entities_dependent_from_verbs_in_sentence.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_relation_definer.TestRelationDefiner.test_nouns_dependent_from_nouns_in_sentence.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for test_relation_definer.TestRelationDefiner.test_sort_entity_importance_by_relation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_relation_definer.test_sort_entity_importance_by_relation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_relation_definer.test_verbs_dependencies_in_sentence.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_relation_graph.TestRelationGraph.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_relation_graph.TestRelationGraph.test_calculating_max_depth_in_component.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_relation_graph.TestRelationGraph.test_finding_max_vertex_in_component.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for test_text_cleaner.TestTextCleaner.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_text_cleaner.TestTextCleaner.test_does_sentence_contains_only_verb.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_text_cleaner.TestTextCleaner.test_does_sentence_contains_only_week_entities.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_text_cleaner.TestTextCleaner.test_iterate_function.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for test_text_cleaner.TestTextCleaner.test_mark_deleting_entities.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_text_cleaner.TestTextCleaner.test_mark_deleting_verbs.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_RelationDefiner.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.3d_plot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Config.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EntitiesFinder.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EntitiyFinder.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Entity.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EntityDict.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EntityList.executor&quot;: &quot;Run&quot;,
+    &quot;Python.EntityVertex.executor&quot;: &quot;Run&quot;,
+    &quot;Python.FileReader.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ImportanceCounter.executor&quot;: &quot;Run&quot;,
+    &quot;Python.MonteCarlo_methods.executor&quot;: &quot;Run&quot;,
+    &quot;Python.NameSynonyms.executor&quot;: &quot;Run&quot;,
+    &quot;Python.NamedEntitiesFinder.executor&quot;: &quot;Run&quot;,
+    &quot;Python.RelationDefiner.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SimpleEntityFinder.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TextCleaner.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TextParser.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TextReteller.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TokenID.executor&quot;: &quot;Run&quot;,
+    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
+    &quot;Python._anytree.executor&quot;: &quot;Run&quot;,
+    &quot;Python._http.executor&quot;: &quot;Run&quot;,
+    &quot;Python.anytree_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.autotest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bacteria.executor&quot;: &quot;Run&quot;,
+    &quot;Python.config_reader.executor&quot;: &quot;Run&quot;,
+    &quot;Python.entity.executor&quot;: &quot;Run&quot;,
+    &quot;Python.entity_dict.executor&quot;: &quot;Run&quot;,
+    &quot;Python.file.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fuzzy.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ga.executor&quot;: &quot;Run&quot;,
+    &quot;Python.graph.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.main_service.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mainwindow.executor&quot;: &quot;Run&quot;,
+    &quot;Python.model_download.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mouse.executor&quot;: &quot;Run&quot;,
+    &quot;Python.relation_definer.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.reteller_strategy.executor&quot;: &quot;Run&quot;,
+    &quot;Python.rut5_reteller.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.semantic_schema.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sentence_projective.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sentence_projective1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.shortener_.executor&quot;: &quot;Run&quot;,
+    &quot;Python.split_on_sentences.executor&quot;: &quot;Run&quot;,
+    &quot;Python.summary.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test__dict__.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_descriptor.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_function_visibility.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_ids.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_natasha.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_networkx.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_pymoprhy.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_stanza.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_wordvec.executor&quot;: &quot;Run&quot;,
+    &quot;Python.text_reteller.executor&quot;: &quot;Run&quot;,
+    &quot;Python.text_tokenizer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.token_node.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ui_form.executor&quot;: &quot;Run&quot;,
+    &quot;Python.word_vec.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/bagdad/.pyenv/versions/3.12.4&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/reteller" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/shortener" />
+      <recent name="$PROJECT_DIR$/shortener/src" />
+      <recent name="$PROJECT_DIR$/shortener/src/mixins" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="TextReteller" type="PythonConfigurationType" factoryName="Python">
+      <module name="TextReteller" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.11 (TextSummarizer)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/.pyenv/versions/3.11.12/bin/python3" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TextReteller" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/shortener/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/shortener/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="model_download" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TextReteller" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/model_download.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="shortener_" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="TextReteller" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/shortener/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/shortener/src/shortener_.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_finding_entities.test_finding_simple_entities" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="TextReteller" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/shortener/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_finding_entities.test_finding_simple_entities&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_loops_in_tree.test_loops_in_tree" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="TextReteller" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/shortener/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_loops_in_tree.test_loops_in_tree&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.TextReteller" />
+      <item itemvalue="Python.shortener_" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.model_download" />
+      <item itemvalue="Python tests.Python tests for test_finding_entities.test_finding_simple_entities" />
+      <item itemvalue="Python tests.Python tests for test_loops_in_tree.test_loops_in_tree" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.shortener_" />
+        <item itemvalue="Python tests.Python tests for test_loops_in_tree.test_loops_in_tree" />
+        <item itemvalue="Python tests.Python tests for test_finding_entities.test_finding_simple_entities" />
+        <item itemvalue="Python.model_download" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -42,5 +311,48 @@
       <updated>1730228711033</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="docker-compose.yaml" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="Dockerfile" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/shortener/tests/test_relation_graph.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="tokens[2]" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

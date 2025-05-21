@@ -139,7 +139,7 @@ class TextShortener(TokenID):
                     else:
                         cleared_sentence = cleared_sentence.rstrip() + token.text + ' '
 
-            cleared_text += cleared_sentence
+            cleared_text += cleared_sentence.capitalize()
 
         return cleared_text.strip()
 

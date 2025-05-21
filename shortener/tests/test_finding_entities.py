@@ -1,6 +1,6 @@
 from shortener.src.entity_dict import EntityDict
-from shortener.text_parser import TextParser
-from shortener.finders.entity_finder import EntityFinder
+from shortener.src.text_parser import TextParser
+from shortener.src.entity_finder import EntityFinder
 from shortener.src.entities.entity import Entity
 
 

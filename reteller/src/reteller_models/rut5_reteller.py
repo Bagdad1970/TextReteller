@@ -4,27 +4,33 @@ from ..reteller_strategy import RetellerStrategy
 class RuT5Reteller(RetellerStrategy):
 
     def __init__(self):
-        super().__init__(model_name='sarahai/ruT5-base-summarizer')
+        super().__init__(model_name='/app/ruT5-base-summarizer')
 
-    def summarize(self, text: str, max_length: int, num_beams: int = 5):
-        prompt = f"summarize: {text}"
-        input_ids = self.tokenizer(
-            prompt,
-            return_tensors="pt",
-            max_length=1000,
-            truncation=True
-        )["input_ids"].to(self.device)
+    def summarize(self,
+                  text: str,
+                  max_length: int,
+                  num_beams: int = 5,
+                  top_k: int = 50,
+                  top_p: float = 0.9,
+                  temperature: float = 0.7,
+                  repetition_penalty: float = 10.0):
+        inputs = self.tokenizer(
+            f"перефразируй: {text}",
+            return_tensors='pt',
+            padding=True,
+            truncation=True,
+            max_length=max_length
+        ).to(self.device)
 
-        output_ids = self.model.generate(
-            input_ids,
-            max_length=150,
-            min_length=50,
-            num_beams=4,
-            no_repeat_ngram_size=3,
-            early_stopping=True
+        outputs = self.model.generate(
+            **inputs,
+            do_sample=True,
+            max_length=max_length,
+            temperature=temperature,
+            top_p=top_p,
+            top_k=top_k,
+            num_beams=10,
+            early_stopping=True,
+            repetition_penalty=5.0
         )
-        summary = self.tokenizer.decode(output_ids[0], skip_special_tokens=True)
-        return summary
-
-        #return f'Заглушка к тексту \"{text}\"'
-
+        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)

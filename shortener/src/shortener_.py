@@ -9,6 +9,8 @@ def short_text(text: str, correlation: float) -> str:
     text_parser = TextParser(text)
     parsed_text = text_parser.get_parsed_text()
 
+    parsed_text.syntax.print()
+
     entity_finder = EntityFinder(parsed_text)
     entity_dict = entity_finder.find_simple_entities()
 
